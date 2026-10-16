@@ -27,5 +27,8 @@ while running == True:
     pygame.draw.circle(screen, (250, 250, 245), (450, 100), 30) #Klokke
     pygame.draw.line(screen, (30, 30, 30), (450, 100), (450, 76),(2)) #Klokke minuttviser
     pygame.draw.line(screen, (30, 30, 30), (450, 100), (466, 100),(4)) #Klokke timeviser
+    pygame.draw.rect(screen, (100, 65, 35), (60, 330, 140, 270)) #Dørkarm
+    pygame.draw.rect(screen, (150, 105, 62), (70, 340, 120, 260)) #Dør
+    pygame.draw.circle(screen, (210, 175, 70), (175, 460), (7)) #Dørhåndtak
     pygame.display.flip()
 pygame.quit()
