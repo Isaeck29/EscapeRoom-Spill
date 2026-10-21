@@ -79,11 +79,13 @@ while running == True:
     pygame.draw.rect(screen, (220, 120, 40), (1010, 495, 10, 40))   # Oransje bok i midterste hylle
     pygame.draw.rect(screen, (50, 50, 50), (1023, 502, 14, 33))     # Svart bok i midterste hylle
     # --- Potet ---
-    pygame.draw.ellipse(screen, (160, 110, 60), (1010, 550, 45, 32))  # Potetens form 
-    pygame.draw.circle(screen, (120, 80, 40), (1020, 558), 2) #Potet-detaljer
-    pygame.draw.circle(screen, (120, 80, 40), (1035, 565), 2) #potet-detaljer
-    pygame.draw.circle(screen, (120, 80, 40), (1042, 556), 2) #Potet-detaljer
-
+    pygame.draw.ellipse(screen, (110, 85, 55), (1014, 555, 38, 26)) #Potetens form
+    pygame.draw.circle(screen, (55, 40, 25), (1022, 562), 2) #Potetdetaljer
+    pygame.draw.circle(screen, (55, 40, 25), (1034, 568), 2) #potetdetaljer
+    pygame.draw.circle(screen, (55, 40, 25), (1041, 560), 2) #Potetdetaljer
+    pygame.draw.circle(screen, (55, 40, 25), (1026, 571), 1) #Potetdetaljer
+    pygame.draw.circle(screen, (55, 40, 25), (1035, 562), 1) #Potetdetaljer
+    pygame.draw.circle(screen, (55, 40, 25), (1021, 568), 1) #Potetdetaljer
 
 
 
