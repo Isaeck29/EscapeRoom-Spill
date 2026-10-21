@@ -14,8 +14,9 @@ pygame.display.set_caption("Escape Room - Klasserommet")
 
 running = True
 
-# Variabel for å vite om poteten er plukket opp eller ikke
+# Variabler for gjenstander som kan plukkes opp
 potet_plukket = False
+lapp_plukket = False
 
 # Inventar-variabler
 inventar = []       # Liste over ting man har samlet opp
@@ -33,19 +34,37 @@ while running == True:
             # Henter posisjonen til musepekeren når det klikkes
             mus_x, mus_y = pygame.mouse.get_pos()
             
-            # Klikkboksen til poteten
-            potet_boks = pygame.Rect(1014, 555, 38, 26)
+            # Sjekker klikk inni inventaret (hvis det er åpent)
+            if inventar_apen:
+                if "Sammenkrøllet Lapp" in inventar:
+                    lapp_indeks = inventar.index("Sammenkrøllet Lapp") #Sjekker hvilken plass i inventaret lappen har. 
+                    lapp_y = 280 + (lapp_indeks * 40) 
+                    lapp_i_inventar_boks = pygame.Rect(390, lapp_y, 250, 30) #Legger klikboksen til lappen på riktig sted i inventaret
+
+                    #Sjekker om musepekeren klikker inne i boksen til lappen i inventaret
+                    if lapp_i_inventar_boks.collidepoint(mus_x, mus_y):
+                        print("Du brettet ut lappen fra inventaret:")
+                        print("På lappen står det: 'Koderekkefølge: Klokke -> Bøker -> Tavle -> Skuff'")
             
-            # Sjekker om vi klikker på poteten, og om den ikke allerede er plukket opp
-            if potet_boks.collidepoint(mus_x, mus_y) and not potet_plukket:
-                potet_plukket = True
-                inventar.append("Potet") # Legger poteten inn i inventaret
-                print("Du plukket opp poteten, og la den i inventaret. Du vet ikke hva du skal bruke den til...")
-            
-            # Klikkboksen til tavla
-            tavle_boks = pygame.Rect(250, 340, 400, 160)
-            if tavle_boks.collidepoint(mus_x, mus_y):
-                print("På tavla står det skrevet med kritt: 'Bøker - Klokkeslett = ?'")
+            else:
+                # Klikkboksen til poteten
+                potet_boks = pygame.Rect(1014, 555, 38, 26)
+                if potet_boks.collidepoint(mus_x, mus_y) and not potet_plukket:
+                    potet_plukket = True
+                    inventar.append("Potet") # Legger poteten inn i inventaret
+                    print("Du plukket opp poteten, og la den i inventaret. Du vet ikke helt hva du skal bruke den til...")
+                
+                # Klikkboksen til søppelbøtta
+                soppel_boks = pygame.Rect(10, 570, 45, 50)
+                if soppel_boks.collidepoint(mus_x, mus_y) and not lapp_plukket:
+                    lapp_plukket = True
+                    inventar.append("Sammenkrøllet Lapp") #Legger lappen inn i inventaret
+                    print("Du fant en sammenkrøllet lapp i søppelbøtta! Åpne inventaret ved å trykke 'i' og klikk på lappen for å lese den.")
+
+                # Klikkboksen til tavla
+                tavle_boks = pygame.Rect(250, 340, 400, 160)
+                if tavle_boks.collidepoint(mus_x, mus_y):
+                    print("På tavla står det skrevet med kritt: 'Bøker - Klokkeslett = ?'")
 
         # Sjekker om spilleren har trykket på en tast
         elif event.type == pygame.KEYDOWN:
@@ -66,7 +85,7 @@ while running == True:
     # --- Tavle ---
     pygame.draw.rect(screen, (100, 65, 35), (240, 330, 420, 180)) #Tavleramme
     pygame.draw.rect(screen, (40, 100, 70), (250, 340, 400, 160)) #Tavle
-    # Teksten på tavla
+    # Tekst skrevet på tavla med "kritt" (hvit farge)
     tavle_tekst = skrift.render("Bøker - Klokkeslett = ?", True, (240, 240, 240))
     screen.blit(tavle_tekst, (330, 400))
 
