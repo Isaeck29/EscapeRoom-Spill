@@ -14,9 +14,11 @@ pygame.display.set_caption("Escape Room - Klasserommet")
 
 running = True
 
-# Variabler for gjenstander som kan plukkes opp
+# Variabler for gjenstander og elementer som kan endre seg
 potet_plukket = False
 lapp_plukket = False
+skuff_apnet = False
+skap_apnet = False
 
 # Inventar-variabler
 inventar = []       # Liste over ting man har samlet opp
@@ -34,13 +36,12 @@ while running == True:
             # Henter posisjonen til musepekeren når det klikkes
             mus_x, mus_y = pygame.mouse.get_pos()
             
-            # Sjekker klikk inni inventaret (hvis det er åpent)
+            # Sjekker klikkene inni inventaret (hvis det er åpent
             if inventar_apen:
                 if "Sammenkrøllet Lapp" in inventar:
-                    lapp_indeks = inventar.index("Sammenkrøllet Lapp") #Sjekker hvilken plass i inventaret lappen har. 
-                    lapp_y = 280 + (lapp_indeks * 40) 
-                    lapp_i_inventar_boks = pygame.Rect(390, lapp_y, 250, 30) #Legger klikboksen til lappen på riktig sted i inventaret
-
+                    lapp_indeks = inventar.index("Sammenkrøllet Lapp") # Sjekker hvilken plass i inventaret lappen har. 
+                    lapp_y = 280 + (lapp_indeks * 40) #Regner ut y-posisjonen til lappen i inventaret basert på hvilken plass den har i listen
+                    lapp_i_inventar_boks = pygame.Rect(390, lapp_y, 250, 30) # Legger klikkboksen til lappen på riktig sted i inventaret
                     #Sjekker om musepekeren klikker inne i boksen til lappen i inventaret
                     if lapp_i_inventar_boks.collidepoint(mus_x, mus_y):
                         print("Du brettet ut lappen fra inventaret:")
@@ -49,14 +50,14 @@ while running == True:
             else:
                 # Klikkboksen til poteten
                 potet_boks = pygame.Rect(1014, 555, 38, 26)
-                if potet_boks.collidepoint(mus_x, mus_y) and not potet_plukket:
+                if potet_boks.collidepoint(mus_x, mus_y) and not potet_plukket: #Sjekker at poteten ikke allerede er plukket opp
                     potet_plukket = True
                     inventar.append("Potet") # Legger poteten inn i inventaret
                     print("Du plukket opp poteten, og la den i inventaret. Du vet ikke helt hva du skal bruke den til...")
                 
                 # Klikkboksen til søppelbøtta
-                soppel_boks = pygame.Rect(10, 570, 45, 50)
-                if soppel_boks.collidepoint(mus_x, mus_y) and not lapp_plukket:
+                soppel_botte = pygame.Rect(10, 570, 45, 50)
+                if soppel_botte.collidepoint(mus_x, mus_y) and not lapp_plukket: #Sjekker at lappen ikke allerede er plukket opp
                     lapp_plukket = True
                     inventar.append("Sammenkrøllet Lapp") #Legger lappen inn i inventaret
                     print("Du fant en sammenkrøllet lapp i søppelbøtta! Åpne inventaret ved å trykke 'i' og klikk på lappen for å lese den.")
@@ -65,6 +66,24 @@ while running == True:
                 tavle_boks = pygame.Rect(250, 340, 400, 160)
                 if tavle_boks.collidepoint(mus_x, mus_y):
                     print("På tavla står det skrevet med kritt: 'Bøker - Klokkeslett = ?'")
+
+                # Klikkboksen til den øverste skuffen
+                skuff_boks = pygame.Rect(860, 490, 90, 38)
+                if skuff_boks.collidepoint(mus_x, mus_y):
+                    skuff_apnet = not skuff_apnet # Bytter mellom true og false. Det åpner og lukker skuffen fordi "not" endrer verdien til det motsatte av det det var før.
+                    if skuff_apnet:
+                        print("Du dro opp skuffen. Inni er det risset inn et tall: 9")
+                    else:
+                        print("Du lukket skuffen igjen.")
+
+                # Klikkboksen til det nederste skapet
+                skap_boks = pygame.Rect(860, 535, 90, 55)
+                if skap_boks.collidepoint(mus_x, mus_y):
+                    skap_apnet = not skap_apnet # Bytter mellom true og false. Åpner og lukker skapet
+                    if skap_apnet:
+                        print("Du åpnet skapdøren. Skapet er helt tomt, bortsett fra et lite ':3' risset inn på bakveggen.")
+                    else:
+                        print("Du lukket igjen skapdøren.")
 
         # Sjekker om spilleren har trykket på en tast
         elif event.type == pygame.KEYDOWN:
@@ -85,7 +104,7 @@ while running == True:
     # --- Tavle ---
     pygame.draw.rect(screen, (100, 65, 35), (240, 330, 420, 180)) #Tavleramme
     pygame.draw.rect(screen, (40, 100, 70), (250, 340, 400, 160)) #Tavle
-    # Tekst skrevet på tavla med "kritt" (hvit farge)
+    # Tekst skrevet på tavla med kritt (hvit farge)
     tavle_tekst = skrift.render("Bøker - Klokkeslett = ?", True, (240, 240, 240))
     screen.blit(tavle_tekst, (330, 400))
 
@@ -123,7 +142,7 @@ while running == True:
     pygame.draw.circle(screen, (230, 230, 225), (550, 60), (14)) #Røykvarsler stor runding
     pygame.draw.circle(screen, (120, 120, 120), (550, 60), (4)) #Røykvarler liten runding
     
-    # --- Pult 1 ---
+    # --- Pult ---
     pygame.draw.rect(screen, (120, 80, 40), (300, 580, 200, 15))    # Bordplate
     pygame.draw.rect(screen, (80, 80, 80), (320, 595, 12, 50))      # Bein venstre
     pygame.draw.rect(screen, (80, 80, 80), (476, 595, 12, 50))      # Bein høyre
@@ -134,6 +153,29 @@ while running == True:
     pygame.draw.rect(screen, (60, 60, 60), (370, 622, 8, 25))       # Stolbein venstre
     pygame.draw.rect(screen, (60, 60, 60), (412, 622, 8, 25))       # Stolbein høyre
     
+    # --- Kommode ---
+    pygame.draw.rect(screen, (100, 60, 25), (850, 480, 110, 120))   # Kommodens ramme
+    
+    # Åpent skap med ":3" risset inn 
+    if skap_apnet:
+        pygame.draw.rect(screen, (50, 30, 10), (860, 535, 90, 55))  # Mørk bakvegg inni skapet
+        skap_tekst = skrift.render(":3", True, (200, 180, 140))     # ":3" på bakveggen
+        screen.blit(skap_tekst, (890, 550))
+    else:
+        # Lukket skap
+        pygame.draw.rect(screen, (115, 75, 35), (860, 535, 90, 55))    # Skapdør
+        pygame.draw.circle(screen, (210, 175, 70), (940, 562), 4)      # Håndtak på skapdøren
+
+    # Åpen skuff
+    if skuff_apnet:
+        pygame.draw.rect(screen, (90, 55, 20), (840, 490, 90, 38))   # Skuffen dratt ut
+        skuff_tall = skrift.render("9", True, (240, 230, 200))       # Tallet 9 risset inn
+        screen.blit(skuff_tall, (880, 497))
+    else:
+        # Lukket skuff
+        pygame.draw.rect(screen, (115, 75, 35), (860, 490, 90, 38))  # Skuff 
+        pygame.draw.circle(screen, (210, 175, 70), (905, 509), 4)    # Håndtak på skuffen
+
     # --- Søppelbøtte ---
     pygame.draw.rect(screen, (80, 80, 80), (15, 575, 35, 45))     # Søppelbøtte
     pygame.draw.ellipse(screen, (110, 110, 110), (10, 570, 45, 12)) # Lokk til Søppelbøtte
