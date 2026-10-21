@@ -11,9 +11,29 @@ pygame.display.set_caption("Escape Room - Klasserommet")
 running = True
 
 while running == True:
+    #  ============================================
+    #  HÅNDTERER ULIKE INPUTS FRA BRUKEREN
+    #  ============================================
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            # Henter posisjonen til musepekeren når det klikkes
+            mus_x, mus_y = pygame.mouse.get_pos()
+            
+            # Klikkboksen til poteten
+            potet_boks = pygame.Rect(1014, 555, 38, 26)
+            
+            # En melding som blir printet ut i konsollen hvis poteten blir klikket på
+            if potet_boks.collidepoint(mus_x, mus_y):
+                print("Du klikket på poteten!")
+    
+    
+    
+    # ============================================
+    # TEGNER OPP TING I KLASSEROMMET
+    # ============================================
     screen.fill((220, 230, 240))
     # --- Gulv ---
     pygame.draw.rect(screen, (160, 120, 80), (0, 600, 1100, 150)) #Gulv
@@ -86,9 +106,5 @@ while running == True:
     pygame.draw.circle(screen, (55, 40, 25), (1026, 571), 1) #Potetdetaljer
     pygame.draw.circle(screen, (55, 40, 25), (1035, 562), 1) #Potetdetaljer
     pygame.draw.circle(screen, (55, 40, 25), (1021, 568), 1) #Potetdetaljer
-
-
-
-
     pygame.display.flip()
 pygame.quit()
