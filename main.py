@@ -10,10 +10,13 @@ pygame.display.set_caption("Escape Room - Klasserommet")
 
 running = True
 
+# Variabel for å vite om poteten er plukket opp eller ikke
+potet_plukket = False
+
 while running == True:
-    #  ============================================
-    #  HÅNDTERER ULIKE INPUTS FRA BRUKEREN
-    #  ============================================
+    # ============================================
+    #   HÅNDTERER ULIKE INPUTS FRA BRUKEREN
+    # ============================================
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -25,9 +28,10 @@ while running == True:
             # Klikkboksen til poteten
             potet_boks = pygame.Rect(1014, 555, 38, 26)
             
-            # En melding som blir printet ut i konsollen hvis poteten blir klikket på
-            if potet_boks.collidepoint(mus_x, mus_y):
-                print("Du klikket på poteten!")
+            # Sjekker om vi klikker på poteten, og om den ikke allerede er plukket opp
+            if potet_boks.collidepoint(mus_x, mus_y) and not potet_plukket:
+                potet_plukket = True
+                print("Du plukket opp poteten, men forstår ikke hva den kan brukes til...")
     
     
     
@@ -98,13 +102,17 @@ while running == True:
     pygame.draw.rect(screen, (40, 150, 90), (995, 500, 12, 35))     # Grønn bok i midterste hylle
     pygame.draw.rect(screen, (220, 120, 40), (1010, 495, 10, 40))   # Oransje bok i midterste hylle
     pygame.draw.rect(screen, (50, 50, 50), (1023, 502, 14, 33))     # Svart bok i midterste hylle
-    # --- Potet ---
-    pygame.draw.ellipse(screen, (110, 85, 55), (1014, 555, 38, 26)) #Potetens form
-    pygame.draw.circle(screen, (55, 40, 25), (1022, 562), 2) #Potetdetaljer
-    pygame.draw.circle(screen, (55, 40, 25), (1034, 568), 2) #potetdetaljer
-    pygame.draw.circle(screen, (55, 40, 25), (1041, 560), 2) #Potetdetaljer
-    pygame.draw.circle(screen, (55, 40, 25), (1026, 571), 1) #Potetdetaljer
-    pygame.draw.circle(screen, (55, 40, 25), (1035, 562), 1) #Potetdetaljer
-    pygame.draw.circle(screen, (55, 40, 25), (1021, 568), 1) #Potetdetaljer
+    
+    # --- Potet (Om poteten er plukket opp vil ikke poteten tegnes) ---
+    if not potet_plukket:
+        pygame.draw.ellipse(screen, (110, 85, 55), (1014, 555, 38, 26)) #Potetens form
+        pygame.draw.circle(screen, (55, 40, 25), (1022, 562), 2) #Potetdetaljer
+        pygame.draw.circle(screen, (55, 40, 25), (1034, 568), 2) #potetdetaljer
+        pygame.draw.circle(screen, (55, 40, 25), (1041, 560), 2) #Potetdetaljer
+        pygame.draw.circle(screen, (55, 40, 25), (1026, 571), 1) #Potetdetaljer
+        pygame.draw.circle(screen, (55, 40, 25), (1035, 562), 1) #Potetdetaljer
+        pygame.draw.circle(screen, (55, 40, 25), (1021, 568), 1) #Potetdetaljer
+
     pygame.display.flip()
+
 pygame.quit()
