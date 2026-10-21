@@ -63,6 +63,27 @@ while running == True:
     pygame.draw.rect(screen, (80, 80, 80), (15, 575, 35, 45))     # Søppelbøtte
     pygame.draw.ellipse(screen, (110, 110, 110), (10, 570, 45, 12)) # Lokk til Søppelbøtte
 
+   # --- Bokhylle ---
+    pygame.draw.rect(screen, (110, 70, 30), (980, 420, 100, 180))   # Bokhylle ramme
+    pygame.draw.rect(screen, (90, 50, 20), (990, 430, 80, 160))    # Bokhylle innside
+    pygame.draw.rect(screen, (110, 70, 30), (990, 480, 80, 6))    # Øverste hylle i bokhyllen
+    pygame.draw.rect(screen, (110, 70, 30), (990, 535, 80, 6))    # Midterste hylle i bokhyllen
+    pygame.draw.rect(screen, (110, 70, 30), (990, 590, 80, 10))    #Nederste hylle i bokhyllen
+    
+    # --- Bøker i hyllene ---
+    pygame.draw.rect(screen, (200, 50, 50), (995, 445, 10, 35))     # Rød bok i øverste hylle
+    pygame.draw.rect(screen, (50, 100, 200), (1008, 440, 12, 40))   # Blå bok i øverste hylle
+    pygame.draw.rect(screen, (200, 200, 50), (1023, 448, 10, 32))   # Gul bok i øverste hylle
+    pygame.draw.rect(screen, (150, 50, 150), (1036, 442, 12, 38))   # Lilla bok i øverste hylle
+    pygame.draw.rect(screen, (40, 150, 90), (995, 500, 12, 35))     # Grønn bok i midterste hylle
+    pygame.draw.rect(screen, (220, 120, 40), (1010, 495, 10, 40))   # Oransje bok i midterste hylle
+    pygame.draw.rect(screen, (50, 50, 50), (1023, 502, 14, 33))     # Svart bok i midterste hylle
+    # --- Potet ---
+    pygame.draw.ellipse(screen, (160, 110, 60), (1010, 550, 45, 32))  # Potetens form 
+    pygame.draw.circle(screen, (120, 80, 40), (1020, 558), 2) #Potet-detaljer
+    pygame.draw.circle(screen, (120, 80, 40), (1035, 565), 2) #potet-detaljer
+    pygame.draw.circle(screen, (120, 80, 40), (1042, 556), 2) #Potet-detaljer
+
 
 
 
