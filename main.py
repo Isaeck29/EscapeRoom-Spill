@@ -58,5 +58,14 @@ while running == True:
     pygame.draw.rect(screen, (100, 100, 100), (360, 550, 12, 60))   # Stolrygg
     pygame.draw.rect(screen, (60, 60, 60), (370, 622, 8, 25))       # Stolbein venstre
     pygame.draw.rect(screen, (60, 60, 60), (412, 622, 8, 25))       # Stolbein høyre
+    
+    # --- Søppelbøtte ---
+    pygame.draw.rect(screen, (80, 80, 80), (15, 575, 35, 45))     # Søppelbøtte
+    pygame.draw.ellipse(screen, (110, 110, 110), (10, 570, 45, 12)) # Lokk til Søppelbøtte
+
+
+
+
+
     pygame.display.flip()
 pygame.quit()
