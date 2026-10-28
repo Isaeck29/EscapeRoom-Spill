@@ -114,7 +114,42 @@ while running == True:
                 if klokke_boks.collidepoint(mus_x, mus_y):
                     print("Klokken på veggen viser hvit timeviser på 12 og minuttviser på 3. Klokken er 3!")
 
-                # Klikkboksen til døra (Kodelåsen)
+                # --- ØVERSTE HYLLE (4 bøker) ---
+                # Rød bok
+                if pygame.Rect(995, 445, 10, 35).collidepoint(mus_x, mus_y):
+                    print("Du drar ut den røde boka. Den er tykk og heter 'Matte for idioter'.")
+                    time.sleep(1)
+                    print("Du tenker at den boka passer perfekt for deg...") 
+
+                # Blå bok
+                if pygame.Rect(1008, 440, 12, 40).collidepoint(mus_x, mus_y):
+                    print("Denne blå boka handler om dyreliv i havet.")
+
+                # Gul bok
+                if pygame.Rect(1023, 448, 10, 32).collidepoint(mus_x, mus_y):
+                    print("En slitt gul bok. Tittelen er uleselig, men på første side står det '⋮⚍ᓭℸ ⋮𝙹ꖌᒷᓭ'.")
+
+                # Lilla bok
+                if pygame.Rect(1036, 442, 12, 38).collidepoint(mus_x, mus_y):
+                    print("Den lilla boka har tittelen 'Fysikk for nybegynnere'.")
+
+                # --- MIDTERSTE HYLLE (3 bøker) ---
+                # Grønne boka
+                if pygame.Rect(995, 500, 12, 35).collidepoint(mus_x, mus_y):
+                    print("En bok om det Galaktiske alfabetet.")
+                    time.sleep(1)
+                    print("Du åpner boka på en tilfeldig side, og der står det 'ʖ∷𝙹∷ ᒷ∷ ⚍リᓵ'")
+                # Den oransje boka
+                if pygame.Rect(1010, 495, 10, 40).collidepoint(mus_x, mus_y):
+                    print("En oransje bok. Tittelen er '⍑ᒷ╎ ℸᒷ∷⋮ᒷ! ꖌꖎᔑ∷ᒷ∷ ↸⚍ å ꖎᒷᓭᒷ ↸ᒷℸℸᒷ?'") # Denne teksten kan oversettes fra det galaktiske alfabetet til Norsk.
+
+
+                # Svart bok
+                if pygame.Rect(1023, 502, 14, 33).collidepoint(mus_x, mus_y):
+                    print("En tung, svart bok. På perm står det 'Historie - Fra Begynnelsen'.")
+                  
+
+                       # Klikkboksen til døra (Kodelåsen)
                 dor_boks = pygame.Rect(60, 330, 140, 270)
                 if dor_boks.collidepoint(mus_x, mus_y):
                     print("Du prøver å åpne døren, men den er låst med en kodelås.")
