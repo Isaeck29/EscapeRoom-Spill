@@ -113,6 +113,8 @@ while running == True:
                             print("Ost? Hva mener du med det? Du må være Jasper!")
                         else:
                             print("Jeg forstår ikke svaret ditt :(")
+                    elif skrevet_kode == "9717":    # Easteregg for Emil sin kode. 
+                        print (":3")
                     elif skrevet_kode == "2469": # Easteregg med koden jeg fikk fra Åsmund
                         if not kode2469_brukt: # Sjekker om koden allerede har blitt brukt
                             kode2469_brukt = True # Gjør at spillkoden vet at denne koden allerede er brukt.  
@@ -211,7 +213,7 @@ while running == True:
                             else:
                                 print ("There is not a man here.")
                         else:
-                            kode2469_brukt == True 
+                            kode2469_brukt = True 
                             print ("Denne koden fungerer bare en gang, prøv en annen kode.")
 
 
