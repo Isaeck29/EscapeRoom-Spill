@@ -145,25 +145,25 @@ while running == True:
                             elif svar == "no": 
                                 print ("There was no man here, but you still feel guilty for not accepting the offer... ")  # Står på engelsk for å matche språket på spillet til Åsmund
                             elif svar == "proceed":
-                                input ("Proceed? Try writing Yes or No instead: ")         
+                                svar = input ("Proceed? Try writing Yes or No instead: ").lower()         
                                 if svar == "proceed":
-                                    input ("Proceed?!?! Try writing Yes or No instead!: ")
+                                    svar = input ("Proceed?!?! Try writing Yes or No instead!: ").lower()
                                     if svar == "proceed":
-                                        input ("Why are you typing proceed! Try writing Yes or No instead!: ")
+                                        svar = input ("Why are you typing proceed! Try writing Yes or No instead!: ").lower()
                                         if svar == "proceed":
-                                            input ("STOP WRITING PROCEED!!!: ")
+                                            svar = input ("STOP WRITING PROCEED!!!: ").lower()
                                             if svar == "proceed":
-                                                input ("Proceed? Try writing Yes or No instead: ")
+                                                svar = input ("Proceed? Try writing Yes or No instead: ").lower()
                                                 if svar == "proceed":
-                                                    input ("OK, it was worth a shot trying to fake a loop. Please stop writing proceed: ")
+                                                    svar = input ("OK, it was worth a shot trying to fake a loop. Please stop writing proceed: ").lower()
                                                     if svar == "proceed":
-                                                        input ("Trust me, you do not want to keep on writing proceed... ")
+                                                        svar = input ("Trust me, you do not want to keep on writing proceed... ").lower()
                                                         if svar == "proceed":
-                                                            input ("STOP IT, YOU CAN'T KEEP ON DOING THIS! ")
+                                                            svar = input ("STOP IT, YOU CAN'T KEEP ON DOING THIS! ").lower()
                                                             if svar == "proceed":
                                                                 print ("Last chance... ")
                                                                 time.sleep(1.0)
-                                                                input ("I am not kidding... ")
+                                                                svar = input ("I am not kidding... ").lower()
                                                                 if svar == "proceed":
                                                                     print ("Sorry, i was not joking at all... ")
                                                                     time.sleep(1.0)
@@ -199,8 +199,8 @@ while running == True:
                                                                     time.sleep (1.0)
                                                                     print ("He offered you something... ")
                                                                     time.sleep (1.0)
-                                                                    input ("Accept the offer? Yes/No: ")
-                                                                    if svar == "Proceed":
+                                                                    svar = input ("Accept the offer? Yes/No: ").lower()
+                                                                    if svar == "Proceed" or svar == "proceed":
                                                                         print ("You have exceeded your limit of Proceed uses")
                                                                         time.sleep (1.0)
                                                                         print ("Try again later")
