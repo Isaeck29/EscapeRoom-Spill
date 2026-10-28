@@ -2,6 +2,7 @@ import pygame
 import time
 pygame.init()
 pygame.font.init() # Starter font-systemet slik at tekst kan vises på skjermen
+pygame.mixer.init() # Starter lyd og musikk-systemet i Pygame
 
 # Skrifttype med font og størrelse. Denne bruker standardfont i pygame
 skrift = pygame.font.SysFont(None, 28)
@@ -18,6 +19,12 @@ try: # får programmet til å prøve å laste bildet
     tree_bilde = pygame.transform.scale(tree_bilde, (600, 450))
 except: # Gjør at programmet ikke kræsjer selv hvis bildet mangler, eller ikke vil laste. 
     tree_bilde = None 
+
+# --- LASTER INN MUSIKKFILEN FOR VINDUET ---
+try: # får programmet til å prøve å laste lydfilen
+    pygame.mixer.music.load("Well, there is a man here..mp3") #Lydfilen jeg har lagt inn (en lydfil som jeg har fått fra Åsmund)
+except: # Gjør at programmet ikke kræsjer selv hvis lydfilen mangler, eller ikke vil laste. 
+    print("Kunne ikke laste inn lydfilen!") 
 
 running = True
 
@@ -77,14 +84,16 @@ while running == True:
                 if tavle_boks.collidepoint(mus_x, mus_y):
                     print("På tavla står det skrevet med kritt: 'Bøker - Klokkeslett = ?'")
 
-                # Klikkboksen til vinduet (åpner/lukker tre-bildet/gif-en)
+                # Klikkboksen til vinduet (åpner/lukker tre-bildet/, og styrer musikken)
                 vindu_boks = pygame.Rect(700, 300, 280, 170)
                 if vindu_boks.collidepoint(mus_x, mus_y):
                     vindu_apnet = not vindu_apnet
                     if vindu_apnet:
                         print("Du ser ut av vinduet.")
+                        pygame.mixer.music.play(-1) # -1 gjør at musikken spiller i en evig loop
                     else:
                         print("Du gikk bort fra vinduet.")
+                        pygame.mixer.music.stop() # Stopper musikken
 
                 # Klikkboksen til den øverste skuffen
                 skuff_boks = pygame.Rect(860, 490, 90, 38)
@@ -143,13 +152,11 @@ while running == True:
                 if pygame.Rect(1010, 495, 10, 40).collidepoint(mus_x, mus_y):
                     print("En oransje bok. Tittelen er '⍑ᒷ╎ ℸᒷ∷⋮ᒷ! ꖌꖎᔑ∷ᒷ∷ ↸⚍ å ꖎᒷᓭᒷ ↸ᒷℸℸᒷ?'") # Denne teksten kan oversettes fra det galaktiske alfabetet til Norsk.
 
-
                 # Svart bok
                 if pygame.Rect(1023, 502, 14, 33).collidepoint(mus_x, mus_y):
                     print("En tung, svart bok. På perm står det 'Historie - Fra Begynnelsen'.")
                   
-
-                       # Klikkboksen til døra (Kodelåsen)
+                # Klikkboksen til døra (Kodelåsen)
                 dor_boks = pygame.Rect(60, 330, 140, 270)
                 if dor_boks.collidepoint(mus_x, mus_y):
                     print("Du prøver å åpne døren, men den er låst med en kodelås.")
@@ -289,11 +296,12 @@ while running == True:
                 # Bytter mellom true og false. Det åpner og lukker inventaret
                 inventar_apen = not inventar_apen
             
-            # Lukke vindu og inventar med ESC-tasten
+            # Lukke vindu og inventar med ESC-tasten (stopper også musikken hvis vinduet lukkes)
             elif event.key == pygame.K_ESCAPE:
                 if vindu_apnet:
                     vindu_apnet = False
                     print("Du lukket utsikten.")
+                    pygame.mixer.music.stop()
                 elif inventar_apen:
                     inventar_apen = False
     
