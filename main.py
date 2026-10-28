@@ -12,14 +12,22 @@ HEIGHT = 750
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Escape Room - Klasserommet")
 
+# --- LASTER INN BILDET FOR VINDUET ---
+try: # får programmet til å prøve å laste bildet
+    tree_bilde = pygame.image.load("tree.gif")
+    tree_bilde = pygame.transform.scale(tree_bilde, (600, 450))
+except: # Gjør at programmet ikke kræsjer selv hvis bildet mangler, eller ikke vil laste. 
+    tree_bilde = None 
+
 running = True
 
 # Variabler for gjenstander og elementer som kan endre seg
-potet_plukket = False
-lapp_plukket = False
-skuff_apnet = False
-skap_apnet = False
-kode2469_brukt = False
+potet_plukket = False #Holder styr på om spilleren har plukket opp poteten enda.
+lapp_plukket = False #holder styr på om spilleren har plukket opp lappen enda
+skuff_apnet = False # Holder styr på om skuffen er åpnet eller lukket
+skap_apnet = False # holder styr på om skapet er åpnet
+kode2469_brukt = False # Holder styr på om koden "2469" er blitt brukt
+vindu_apnet = False # Holder styr på om bilde-vinduet er åpent akkurat nå
 
 # Inventar-variabler
 inventar = []       # Liste over ting man har samlet opp
@@ -68,6 +76,15 @@ while running == True:
                 tavle_boks = pygame.Rect(250, 340, 400, 160)
                 if tavle_boks.collidepoint(mus_x, mus_y):
                     print("På tavla står det skrevet med kritt: 'Bøker - Klokkeslett = ?'")
+
+                # Klikkboksen til vinduet (åpner/lukker tre-bildet/gif-en)
+                vindu_boks = pygame.Rect(700, 300, 280, 170)
+                if vindu_boks.collidepoint(mus_x, mus_y):
+                    vindu_apnet = not vindu_apnet
+                    if vindu_apnet:
+                        print("Du ser ut av vinduet.")
+                    else:
+                        print("Du gikk bort fra vinduet.")
 
                 # Klikkboksen til den øverste skuffen
                 skuff_boks = pygame.Rect(860, 490, 90, 38)
@@ -226,7 +243,14 @@ while running == True:
             if event.key == pygame.K_i:
                 # Bytter mellom true og false. Det åpner og lukker inventaret
                 inventar_apen = not inventar_apen
-    
+            
+            # Lukke vindu og inventar med ESC-tasten
+            elif event.key == pygame.K_ESCAPE:
+                if vindu_apnet:
+                    vindu_apnet = False
+                    print("Du lukket utsikten.")
+                elif inventar_apen:
+                    inventar_apen = False
     
     
     # ============================================
@@ -359,6 +383,24 @@ while running == True:
             # Tegner teksten på skjermen
             screen.blit(gjenstand_bilde, (400, start_y))
             start_y += 40 # Flytter neste linje nedover hvis det er flere ting som skal i inventaret. 
+
+    # --- VISER BILDET "tree.gif" HVIS VINDUET ER ÅPNET ---
+    if vindu_apnet:
+        # Mørk bakgrunn bak bildet
+        pygame.draw.rect(screen, (20, 20, 20), (230, 100, 640, 520))
+        pygame.draw.rect(screen, (200, 200, 200), (230, 100, 640, 520), 3)
+        
+        if tree_bilde:
+            # Tegner bildet midt på skjermen
+            screen.blit(tree_bilde, (250, 120))
+        else:
+            # Hvis bildet mangler kommer det feilmelding
+            feil_tekst = skrift.render("Fant ikke 'tree.gif' i mappen!", True, (255, 100, 100))
+            screen.blit(feil_tekst, (380, 330))
+            
+        # Tekst under bildet som forklarer hvordan man kan lukke bildet med treet igjen. 
+        lukk_info = skrift.render("Klikk på vinduet eller trykk [ESC] for å lukke", True, (255, 255, 255))
+        screen.blit(lukk_info, (340, 570))
 
     pygame.display.flip()
 
