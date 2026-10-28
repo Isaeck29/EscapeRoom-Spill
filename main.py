@@ -81,7 +81,7 @@ while running == True:
                 if skap_boks.collidepoint(mus_x, mus_y):
                     skap_apnet = not skap_apnet # Bytter mellom true og false. Åpner og lukker skapet
                     if skap_apnet:
-                        print("Du åpnet skapdøren. Skapet er helt tomt, bortsett fra et lite ':3' risset inn på bakveggen.")
+                        print("Du åpnet skapdøren. Skapet er helt tomt, bortsett fra et lite ':3' som er tegnet på bakveggen.")
                     else:
                         print("Du lukket igjen skapdøren.")
 
