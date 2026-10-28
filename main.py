@@ -95,6 +95,12 @@ while running == True:
                     if skrevet_kode == "3749":
                         print("Du skrev riktig kode! Låsen klikker grønt, og døren glir opp. DU VANT SPILLET!")
                         running = False # Lukker spillet når spilleren vinner
+                    elif skrevet_kode == "6767":
+                        print("Er du dum? 6767 gir jo ingen mening, skjerp deg!")
+                    elif skrevet_kode == "1234":
+                        print("Beklager, men koden er ikke så enkel dessverre.")
+                    elif skrevet_kode == "6969":
+                        print("Hehe, du prøvde å være morsom ved å skrive koden 6969, men det funket ikke.")
                     else:
                         print("Feil kode! Låsen lager en merkelig lyd. Prøv å finne ut hva koden er ved å undersøke ting i rommet.")
 
