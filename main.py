@@ -19,6 +19,7 @@ potet_plukket = False
 lapp_plukket = False
 skuff_apnet = False
 skap_apnet = False
+kode2469_brukt = False
 
 # Inventar-variabler
 inventar = []       # Liste over ting man har samlet opp
@@ -112,10 +113,108 @@ while running == True:
                             print("Ost? Hva mener du med det? Du må være Jasper!")
                         else:
                             print("Jeg forstår ikke svaret ditt :(")
-                    elif skrevet_kode = "2469": #Easteregg med koden jeg fikk fra Åsmund
-                        print("Well, there is a man here:")
-                        time.sleep(0.5) # Får koden til å vente i et halvt sekund før den printer neste linje.
-                        input("He offered you something...")
+                    elif skrevet_kode == "2469": # Easteregg med koden jeg fikk fra Åsmund
+                        if not kode2469_brukt: # Sjekker om koden allerede har blitt brukt
+                            kode2469_brukt = True # Gjør at spillkoden vet at denne koden allerede er brukt.  
+                            print("Well, there is a man here. ") # Tekst fra spillet til Åsmund
+                            time.sleep(1.2) # Får koden til å vente i 1,2 sekunder før den printer neste linje.
+                            print("He offered you something...  ") # Tekst fra spillet til Åsmund
+                            time.sleep(1.2) # Får koden til å vente i 1,2 sekunder før den printer neste linje.
+                            svar = input("Accept the offer? Yes/No: ").lower() # Tekst fra spillet til Åsmund
+                            if svar == "yes":
+                                print("There is not a man here. ")  # Står på engelsk for å matche språket på spillet til Åsmund
+                            elif svar == "no": 
+                                print ("There was no man here, but you still feel guilty for not accepting the offer... ")  # Står på engelsk for å matche språket på spillet til Åsmund
+                            elif svar == "proceed":
+                                input ("Proceed? Try writing Yes or No instead: ")         
+                                if svar == "proceed":
+                                    input ("Proceed?!?! Try writing Yes or No instead!: ")
+                                    if svar == "proceed":
+                                        input ("Why are you typing proceed! Try writing Yes or No instead!: ")
+                                        if svar == "proceed":
+                                            input ("STOP WRITING PROCEED!!!: ")
+                                            if svar == "proceed":
+                                                input ("Proceed? Try writing Yes or No instead: ")
+                                                if svar == "proceed":
+                                                    input ("OK, it was worth a shot trying to fake a loop. Please stop writing proceed: ")
+                                                    if svar == "proceed":
+                                                        input ("Trust me, you do not want to keep on writing proceed... ")
+                                                        if svar == "proceed":
+                                                            input ("STOP IT, YOU CAN'T KEEP ON DOING THIS! ")
+                                                            if svar == "proceed":
+                                                                print ("Last chance... ")
+                                                                time.sleep(1.0)
+                                                                input ("I am not kidding... ")
+                                                                if svar == "proceed":
+                                                                    print ("Sorry, i was not joking at all... ")
+                                                                    time.sleep(1.0)
+                                                                    print ("Your game will end itself in 5 seconds... ")
+                                                                    time.sleep (1.0)
+                                                                    print ("5 ")
+                                                                    time.sleep(1.0)
+                                                                    print ("4 ")
+                                                                    time.sleep(1.0)
+                                                                    print ("3 ")
+                                                                    time.sleep(1.0)
+                                                                    print ("2 ")
+                                                                    time.sleep(1.0)
+                                                                    print ("1 ")
+                                                                    time.sleep(1.0)
+                                                                    print ("0 ")
+                                                                    time.sleep(1.0)
+                                                                    print ("...")
+                                                                    time.sleep(1.0)
+                                                                    print ("...")
+                                                                    time.sleep(1.0)
+                                                                    print ("We identified a problem while executing this command... ")
+                                                                    time.sleep(1.0)
+                                                                    print ("...")
+                                                                    time.sleep(0.5)
+                                                                    print ("WHAT?!? ")
+                                                                    time.sleep(1.0)
+                                                                    print ("It didn't work?!?! ")
+                                                                    time.sleep(1.0)
+                                                                    print ("ok forget i was here... ")
+                                                                    time.sleep (3.0)
+                                                                    print ("Well, there is a man here. ")
+                                                                    time.sleep (1.0)
+                                                                    print ("He offered you something... ")
+                                                                    time.sleep (1.0)
+                                                                    input ("Accept the offer? Yes/No: ")
+                                                                    if svar == "Proceed":
+                                                                        print ("You have exceeded your limit of Proceed uses")
+                                                                        time.sleep (1.0)
+                                                                        print ("Try again later")
+                                                                    else:
+                                                                        print ("There is not a man here.")
+
+                                                                else: 
+                                                                    print ("You stopped saying proceed just in time...")
+                                                                    time.sleep(1.0)
+                                                                    print ("There was never a man here...")
+                                                            else: 
+                                                                print ("There is not a man here.")
+                                                        else:
+                                                            print ("There is not a man here.")
+                                                    else:
+                                                        print ("There is not a man here.")
+                                                else:
+                                                    print ("There is not a man here.")
+                                            else:
+                                                print ("There is not a man here.")
+                                        else:
+                                            print ("There is not a man here.")
+                                    else:
+                                        print ("There is not a man here.")
+                                else:
+                                    print ("There is not a man here.")
+                            else:
+                                print ("There is not a man here.")
+                        else:
+                            kode2469_brukt == True 
+                            print ("Denne koden fungerer bare en gang, prøv en annen kode.")
+
+
                     else:
                         print("Feil kode! Låsen lager en merkelig lyd. Prøv å finne ut hva koden er ved å undersøke ting i rommet.")
 
