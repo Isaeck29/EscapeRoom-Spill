@@ -104,6 +104,16 @@ while running == True:
                     else:
                         print("Du lukket igjen skapdøren.")
 
+                # Klikkboksen til røykvarsleren
+                roykvarsler_boks = pygame.Rect(536, 46, 28, 28)
+                if roykvarsler_boks.collidepoint(mus_x, mus_y):
+                    print("En helt vanlig røykvarsler. Den henger stille og rolig i taket og passer på")
+
+                # Klikkboksen til klokka
+                klokke_boks = pygame.Rect(415, 245, 70, 70)
+                if klokke_boks.collidepoint(mus_x, mus_y):
+                    print("Klokken på veggen viser hvit timeviser på 12 og minuttviser på 3. Klokken er 3!")
+
                 # Klikkboksen til døra (Kodelåsen)
                 dor_boks = pygame.Rect(60, 330, 140, 270)
                 if dor_boks.collidepoint(mus_x, mus_y):
