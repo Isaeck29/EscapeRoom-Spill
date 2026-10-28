@@ -36,13 +36,14 @@ while running == True:
             # Henter posisjonen til musepekeren når det klikkes
             mus_x, mus_y = pygame.mouse.get_pos()
             
-            # Sjekker klikkene inni inventaret (hvis det er åpent
+            # Sjekker klikkene inni inventaret (hvis det er åpent)
             if inventar_apen:
                 if "Sammenkrøllet Lapp" in inventar:
                     lapp_indeks = inventar.index("Sammenkrøllet Lapp") # Sjekker hvilken plass i inventaret lappen har. 
-                    lapp_y = 280 + (lapp_indeks * 40) #Regner ut y-posisjonen til lappen i inventaret basert på hvilken plass den har i listen
+                    lapp_y = 280 + (lapp_indeks * 40) # Regner ut y-posisjonen til lappen i inventaret basert på hvilken plass den har i listen
                     lapp_i_inventar_boks = pygame.Rect(390, lapp_y, 250, 30) # Legger klikkboksen til lappen på riktig sted i inventaret
-                    #Sjekker om musepekeren klikker inne i boksen til lappen i inventaret
+                    
+                    # Sjekker om musepekeren klikker inne i boksen til lappen i inventaret
                     if lapp_i_inventar_boks.collidepoint(mus_x, mus_y):
                         print("Du brettet ut lappen fra inventaret:")
                         print("På lappen står det: 'Koderekkefølge: Klokke -> Bøker -> Tavle -> Skuff'")
@@ -50,16 +51,16 @@ while running == True:
             else:
                 # Klikkboksen til poteten
                 potet_boks = pygame.Rect(1014, 555, 38, 26)
-                if potet_boks.collidepoint(mus_x, mus_y) and not potet_plukket: #Sjekker at poteten ikke allerede er plukket opp
+                if potet_boks.collidepoint(mus_x, mus_y) and not potet_plukket: # Sjekker at poteten ikke allerede er plukket opp
                     potet_plukket = True
                     inventar.append("Potet") # Legger poteten inn i inventaret
                     print("Du plukket opp poteten, og la den i inventaret. Du vet ikke helt hva du skal bruke den til...")
                 
                 # Klikkboksen til søppelbøtta
                 soppel_botte = pygame.Rect(10, 570, 45, 50)
-                if soppel_botte.collidepoint(mus_x, mus_y) and not lapp_plukket: #Sjekker at lappen ikke allerede er plukket opp
+                if soppel_botte.collidepoint(mus_x, mus_y) and not lapp_plukket: # Sjekker at lappen ikke allerede er plukket opp
                     lapp_plukket = True
-                    inventar.append("Sammenkrøllet Lapp") #Legger lappen inn i inventaret
+                    inventar.append("Sammenkrøllet Lapp") # Legger lappen inn i inventaret
                     print("Du fant en sammenkrøllet lapp i søppelbøtta! Åpne inventaret ved å trykke 'i' og klikk på lappen for å lese den.")
 
                 # Klikkboksen til tavla
@@ -84,6 +85,18 @@ while running == True:
                         print("Du åpnet skapdøren. Skapet er helt tomt, bortsett fra et lite ':3' som er tegnet på bakveggen.")
                     else:
                         print("Du lukket igjen skapdøren.")
+
+                # Klikkboksen til døra (Kodelåsen)
+                dor_boks = pygame.Rect(60, 330, 140, 270)
+                if dor_boks.collidepoint(mus_x, mus_y):
+                    print("Du prøver å åpne døren, men den er låst med en kodelås.")
+                    skrevet_kode = input("Skriv inn 4-sifret kode i terminalen: ")
+                    
+                    if skrevet_kode == "3749":
+                        print("Du skrev riktig kode! Låsen klikker grønt, og døren glir opp. DU VANT SPILLET!")
+                        running = False # Lukker spillet når spilleren vinner
+                    else:
+                        print("Feil kode! Låsen lager en merkelig lyd. Prøv å finne ut hva koden er ved å undersøke ting i rommet.")
 
         # Sjekker om spilleren har trykket på en tast
         elif event.type == pygame.KEYDOWN:
