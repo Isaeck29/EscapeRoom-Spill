@@ -4,6 +4,14 @@ pygame.init()
 pygame.font.init() # Starter font-systemet slik at tekst kan vises på skjermen
 pygame.mixer.init() # Starter lyd og musikk-systemet i Pygame
 
+# Velkomstmelding i terminalen/konsollen ved spillets start.
+print("==========================================")
+print("   VELKOMMEN TIL ESCAPE ROOM - KLASSEROMMET")
+print("==========================================")
+print(" Undersøk rommet, finn gjenstander og løs gåtene.")
+print(" Trykk 'i' for inventar, og ESC for å lukke vinduer.")
+print("------------------------------------------") # Gjør meldingen enklere å se hvis terminalen/konsollen blir full av andre meldinger.
+
 # Skrifttype med font og størrelse. Denne bruker standardfont i pygame
 skrift = pygame.font.SysFont(None, 28)
 
@@ -21,8 +29,10 @@ except: # Gjør at programmet ikke kræsjer selv hvis bildet mangler, eller ikke
     tree_bilde = None 
 
 # --- LASTER INN MUSIKKFILEN FOR VINDUET ---
+musikk_lastet = False # Holder styr på om musikkfilen ble lastet vellykket
 try: # får programmet til å prøve å laste lydfilen
     pygame.mixer.music.load("Well, there is a man here..mp3") #Lydfilen jeg har lagt inn (en lydfil som jeg har fått fra Åsmund)
+    musikk_lastet = True # Setter til True hvis innlastinga gikk bra
 except: # Gjør at programmet ikke kræsjer selv hvis lydfilen mangler, eller ikke vil laste. 
     print("Kunne ikke laste inn lydfilen!") 
 
@@ -41,6 +51,7 @@ inventar = []       # Liste over ting man har samlet opp
 inventar_apen = False # Passer på om inventaret vises på skjermen eller ikke
 
 while running == True:
+    
     # ============================================
     #   HÅNDTERER ULIKE INPUTS FRA BRUKEREN
     # ============================================
@@ -90,10 +101,12 @@ while running == True:
                     vindu_apnet = not vindu_apnet
                     if vindu_apnet:
                         print("Du ser ut av vinduet.")
-                        pygame.mixer.music.play(-1) # -1 gjør at musikken spiller i en evig loop
+                        if musikk_lastet:
+                            pygame.mixer.music.play(-1) # -1 gjør at musikken spiller i en evig loop
                     else:
                         print("Du gikk bort fra vinduet.")
-                        pygame.mixer.music.stop() # Stopper musikken
+                        if musikk_lastet:
+                            pygame.mixer.music.stop() # Stopper musikken
 
                 # Klikkboksen til den øverste skuffen
                 skuff_boks = pygame.Rect(860, 490, 90, 38)
@@ -211,7 +224,7 @@ while running == True:
                                                     if svar == "proceed":
                                                         svar = input ("Trust me, you do not want to keep on writing proceed... ").lower()
                                                         if svar == "proceed":
-                                                            svar = input ("STOP IT, YOU CAN'T KEEP ON DOING THIS! ").lower()
+                                                            svar = input ("STOP IT, YOU CANT KEEP ON DOING THIS! ").lower()
                                                             if svar == "proceed":
                                                                 print ("Last chance... ")
                                                                 time.sleep(1.0)
@@ -301,7 +314,8 @@ while running == True:
                 if vindu_apnet:
                     vindu_apnet = False
                     print("Du lukket utsikten.")
-                    pygame.mixer.music.stop()
+                    if musikk_lastet:
+                        pygame.mixer.music.stop()
                 elif inventar_apen:
                     inventar_apen = False
     
