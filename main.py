@@ -1,5 +1,5 @@
 import pygame
-
+import time
 pygame.init()
 pygame.font.init() # Starter font-systemet slik at tekst kan vises på skjermen
 
@@ -101,6 +101,21 @@ while running == True:
                         print("Beklager, men koden er ikke så enkel dessverre.")
                     elif skrevet_kode == "6969":
                         print("Hehe, du prøvde å være morsom ved å skrive koden 6969, men det funket ikke.")
+                    elif skrevet_kode == "5505": #Easteregg ettersom det var en kode jeg fikk fra Jasper.
+                        print("Er du Jasper?")
+                        svar = input("Ja/Nei:").lower() #.lower får alt det som blir skrevet som input til å bli små bokstaver.
+                        if svar == "ja":
+                            print("Hei Jasper!")
+                        elif svar == "nei": 
+                            print("Nei, du er ikke Jasper. Men det er greit, Jasper er en rar fyr.") #Jasper er en rar fyr, men det er ikke negativt.
+                        elif svar == "ost":
+                            print("Ost? Hva mener du med det? Du må være Jasper!")
+                        else:
+                            print("Jeg forstår ikke svaret ditt :(")
+                    elif skrevet_kode = "2469": #Easteregg med koden jeg fikk fra Åsmund
+                        print("Well, there is a man here:")
+                        time.sleep(0.5) # Får koden til å vente i et halvt sekund før den printer neste linje.
+                        input("He offered you something...")
                     else:
                         print("Feil kode! Låsen lager en merkelig lyd. Prøv å finne ut hva koden er ved å undersøke ting i rommet.")
 
