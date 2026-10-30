@@ -43,4 +43,4 @@ For at spillet skal fungere optimalt med lyd og bilde, må disse tre filene ligg
 * **Trykk 'i':** Åpner og lukker inventaret ditt.
 * **Klikk i inventaret:** Klikk på lappen om du har plukket opp for å lese den.
 * **Trykk 'ESC':** Lukker åpne bildevisninger eller inventaret.
-* **Terminalen i VS Code:** Når du klikker på døren eller hemmelige koder, må du skrive inn svaret/koden i terminalen nederst i VS Code.
+* **Terminalen i VS Code:** Når du klikker på døren eller svarer på ting som blir printet i terminalen, må du skrive inn svaret/koden i terminalen nederst i VS Code.
